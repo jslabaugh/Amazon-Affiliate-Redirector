@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name          Amazon Affiliate Fixer
+// @name          Amazon Affiliate Redirector
 // @namespace     
 // @description	  Plugs Amazon Links To A Designated Affiliate
 // @include	  *
 // @run-at        document-end
-// @version       1.0
+// @version       1.01
 // ==/UserScript==
 
 // Set Up The Amazon Domain Regex
