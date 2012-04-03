@@ -1,0 +1,7 @@
+
+amazon_affiliate_redirector.user.js is a user script that will rewrite
+all eligible Amazon.com links such that they include a plugged affiliate
+ID.  Written for my folks so that their son earns a commission on all
+their Amazon.com purchases.
+
+Fun.
