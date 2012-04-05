@@ -3,8 +3,8 @@
 // @namespace     
 // @description	  Plugs Amazon Links To A Designated Affiliate
 // @include	  *
-// @exclude	  http://affiliate-program.amazon.com/
-// @exclude	  https://affiliate-program.amazon.com/
+// @exclude	  http://affiliate-program.amazon.com/*
+// @exclude	  https://affiliate-program.amazon.com/*
 // @run-at        document-end
 // @version       1.02
 // ==/UserScript==
