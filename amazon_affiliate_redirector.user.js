@@ -3,8 +3,10 @@
 // @namespace     
 // @description	  Plugs Amazon Links To A Designated Affiliate
 // @include	  *
+// @exclude	  http://affiliate-program.amazon.com/
+// @exclude	  https://affiliate-program.amazon.com/
 // @run-at        document-end
-// @version       1.01
+// @version       1.02
 // ==/UserScript==
 
 // Set Up The Amazon Domain Regex
