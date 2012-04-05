@@ -6,7 +6,7 @@
 // @exclude	  http://affiliate-program.amazon.com/*
 // @exclude	  https://affiliate-program.amazon.com/*
 // @run-at        document-end
-// @version       1.02
+// @version       1.1
 // ==/UserScript==
 
 // Set Up The Amazon Domain Regex
