@@ -14,9 +14,9 @@ var am = "(http).*?(amazon\\.com)";
 var amr = new RegExp(am, ["i"]);
 
 // Set Up The Affiliate Regex Strings
-var af1 = "(=)((?:[a-z][a-z]+))(-)(\\d+)";
-var af2 = "(%3D)((?:[a-z][a-z]+))(-)(\\d+)";
-var af3 = "((?:[a-z][a-z]+))(-)(\\d+)";
+var af1 = "(=)((?:[a-z0-9_-]+))(-20)";
+var af2 = "(%3D)((?:[a-z0-9_-]+))(-20)";
+var af3 = "((?:[a-z0-9_-]+))(-20)";
 
 // Set Up The Affiliate Regex Objects
 var af1r = new RegExp(".*?" + af1,["i"]);
