@@ -5,12 +5,15 @@
 // @include	  *
 // @exclude	  http://affiliate-program.amazon.com/*
 // @exclude	  https://affiliate-program.amazon.com/*
+// @exclude       http://*.images-amazon.com/*
+// @exclude       https://*.images-amazon.com/*
+// @exclude	  https://www.google.com/search
 // @run-at        document-end
 // @version       1.1
 // ==/UserScript==
 
 // Set Up The Amazon Domain Regex
-var am = "(http).*?(amazon\\.com)";
+var am = "(http).*?(www\\.amazon\\.com)";
 var amr = new RegExp(am, ["i"]);
 
 // Set Up The Affiliate Regex Strings
@@ -27,7 +30,7 @@ var af4r = new RegExp(".*?(\\?)",["i"]);
 // The Affiliate String
 var aff = "thmydoli-20";
 
-// Loop through all  elements (links) in the page
+It's // Loop through all  elements (links) in the page
 var links = document.querySelectorAll('a');
 for (var i = 0, len = links.length; i < len; i++) {
   if (amr.exec(links[i].href) != null) {
