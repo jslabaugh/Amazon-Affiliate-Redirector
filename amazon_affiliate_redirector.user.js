@@ -4,7 +4,7 @@
 // @description   Plugs Amazon Links To A Designated Affiliate
 // @include       *
 // @run-at        document-end
-// @version       2.0
+// @version       1.5
 // ==/UserScript==
 
 // Define Your Affiliate ID (Or Leave Mine In!)
