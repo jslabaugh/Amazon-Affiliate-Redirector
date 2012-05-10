@@ -1,53 +1,51 @@
 // ==UserScript==
 // @name          Amazon Affiliate Redirector
 // @namespace     
-// @description	  Plugs Amazon Links To A Designated Affiliate
-// @include	  *
-// @exclude	  http://affiliate-program.amazon.com/*
-// @exclude	  https://affiliate-program.amazon.com/*
-// @exclude       http://*.images-amazon.com/*
-// @exclude       https://*.images-amazon.com/*
-// @exclude	  https://www.google.com/search
+// @description   Plugs Amazon Links To A Designated Affiliate
+// @include       *
 // @run-at        document-end
-// @version       1.1
+// @version       2.0
 // ==/UserScript==
 
-// Set Up The Amazon Domain Regex
-var am = "(http).*?(www\\.amazon\\.com)";
-var amr = new RegExp(am, ["i"]);
+// Define Your Affiliate ID (Or Leave Mine In!)
+var affID = 'thmydoli-20';
 
-// Set Up The Affiliate Regex Strings
-var af1 = "(=)((?:[a-z0-9_-]+))(-20)";
-var af2 = "(%3D)((?:[a-z0-9_-]+))(-20)";
-var af3 = "((?:[a-z0-9_-]+))(-20)";
+// Get The Amazon Product ID
+function getASIN(href) {
+  var asinMatch;
+  asinMatch = href.match(/\/exec\/obidos\/ASIN\/(\w{10})/i);
+  if (!asinMatch) { asinMatch = href.match(/\/gp\/product\/(\w{10})/i); }
+  if (!asinMatch) { asinMatch = href.match(/\/exec\/obidos\/tg\/detail\/\-\/(\w{10})/i); }
+  if (!asinMatch) { asinMatch = href.match(/\/dp\/(\w{10})/i); }
+  if (!asinMatch) { return null; }
+  return asinMatch[1];
+}
 
-// Set Up The Affiliate Regex Objects
-var af1r = new RegExp(".*?" + af1,["i"]);
-var af2r = new RegExp(".*?" + af2,["i"]);
-var af3r = new RegExp(".*?(/)" + af3,["i"]);
-var af4r = new RegExp(".*?(\\?)",["i"]);
+// Get The Domain
+function getDomain() {
+  if (document.location.hostname.substr(0,4) == 'www.') {
+    return document.location.hostname.substr(4) ;
+  }
+  return document.location.hostname ;
+}
 
-// The Affiliate String
-var aff = "thmydoli-20";
+// The Main Function
+(function() {
 
-It's // Loop through all  elements (links) in the page
-var links = document.querySelectorAll('a');
-for (var i = 0, len = links.length; i < len; i++) {
-  if (amr.exec(links[i].href) != null) {
-    if (af1r.exec(links[i].href) != null) {
-      links[i].href = links[i].href.replace(new RegExp(af1,["i"]), "=" + aff);
-    }
-    else if (af2r.exec(links[i].href) != null) {
-      links[i].href = links[i].href.replace(new RegExp(af2,["i"]), "%3D" + aff);
-    }
-    else if (af3r.exec(links[i].href) != null) {
-      links[i].href = links[i].href.replace(new RegExp(af3,["i"]), aff);
-    }
-    else if (af4r.exec(links[i].href) != null) {
-      links[i].href = links[i].href + "&tag=" + aff;
-    }
-    else {
-      links[i].href = links[i].href + "/" + aff + "/";
+  // Scope
+  var asin = '';
+  var currentDomain = getDomain();
+  var linkDomain = (currentDomain.match(/amazon\./i) ? currentDomain : "amazon.com");
+
+  // Get All Of Our Links And Loop
+  var allLinks = document.getElementsByTagName("a");
+  for (i = 0; i < allLinks.length; i++) {
+    var href = allLinks[i].href;
+    if (href.match(/amazon\./i)) {
+      asin = getASIN(href);
+      if (asin != null) {
+        allLinks[i].setAttribute("href", "http://"+linkDomain+"/o/ASIN/" + asin + "/ref=nosim/"+affID);
+      }
     }
   }
-}
+})();
